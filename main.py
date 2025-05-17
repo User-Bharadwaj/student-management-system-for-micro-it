@@ -33,8 +33,7 @@ class Student(db.Model):
     dbms = db.Column(db.Float, nullable=False)
     os = db.Column(db.Float, nullable=False)
 
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
     # Create default admin user if not exists
     if not User.query.filter_by(username='admin').first():
