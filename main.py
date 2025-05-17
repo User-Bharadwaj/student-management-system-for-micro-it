@@ -34,16 +34,18 @@ class Student(db.Model):
     dbms = db.Column(db.Float, nullable=False)
     os = db.Column(db.Float, nullable=False)
 
-@app.before_first_request
 def create_tables():
-    db.create_all()
+    with app.app_context():
+        db.create_all()
+        # Create default admin user if not exists
+        if not User.query.filter_by(username='admin').first():
+            admin = User(username='admin')
+            admin.set_password('admin')
+            db.session.add(admin)
+            db.session.commit()
 
-    # Create default admin user if not exists
-    if not User.query.filter_by(username='admin').first():
-        admin = User(username='admin')
-        admin.set_password('admin')
-        db.session.add(admin)
-        db.session.commit()
+# Call create_tables before running the app
+create_tables()
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
