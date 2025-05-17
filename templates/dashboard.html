@@ -7,8 +7,20 @@
 <body>
 <div class="container">
     <h2>Student Dashboard</h2>
-    <a href="{{ url_for('add_student') }}">Add Student</a> | <a href="{{ url_for('logout') }}">Logout</a>
-    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <p class="flash {{ category }}">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <a href="{{ url_for('add_student') }}">Add Student</a> |
+    <a href="{{ url_for('change_password') }}">Change Password</a> |
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <table>
         <thead>
             <tr>
                 <th>Name</th>
@@ -18,10 +30,11 @@
                 <th>Python</th>
                 <th>DBMS</th>
                 <th>OS</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for student in students %}
+            {% for student in students %}
             <tr>
                 <td>{{ student.name }}</td>
                 <td>{{ student.year }}</td>
@@ -30,10 +43,14 @@
                 <td>{{ student.python }}</td>
                 <td>{{ student.dbms }}</td>
                 <td>{{ student.os }}</td>
+                <td>
+                    <a href="{{ url_for('edit_student', id=student.id) }}">Edit</a> |
+                    <a href="{{ url_for('delete_student', id=student.id) }}" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
             </tr>
-        {% else %}
-            <tr><td colspan="7" style="text-align:center;">No students found.</td></tr>
-        {% endfor %}
+            {% else %}
+            <tr><td colspan="8" style="text-align:center;">No students found.</td></tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
