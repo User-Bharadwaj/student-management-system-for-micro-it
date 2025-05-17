@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h2>Student Dashboard</h2>
+    <a href="{{ url_for('add_student') }}">Add Student</a> | <a href="{{ url_for('logout') }}">Logout</a>
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Java</th>
+                <th>Python</th>
+                <th>DBMS</th>
+                <th>OS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.year }}</td>
+                <td>{{ student.branch }}</td>
+                <td>{{ student.java }}</td>
+                <td>{{ student.python }}</td>
+                <td>{{ student.dbms }}</td>
+                <td>{{ student.os }}</td>
+            </tr>
+        {% else %}
+            <tr><td colspan="7" style="text-align:center;">No students found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
