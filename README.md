@@ -34,10 +34,11 @@ A lightweight Student Management System built using **Python** and **Flask** for
 ## 📸 Screenshots
 
 ### Dashboard Screenshot
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/Screenshot%202025-05-18%20151844.png)
 
 ### Add Student Page Screenshot
-![Add Student](screenshots/add-student.png)
+![Add Student](screenshots/Screenshot%202025-05-18%20153256.png)
+
 
 
 ---
