@@ -33,9 +33,12 @@ A lightweight Student Management System built using **Python** and **Flask** for
 
 ## 📸 Screenshots
 
-> (Add screenshots here once your repo is public. Example below:)
+### Dashboard Screenshot
+![Dashboard](screenshots/dashboard.png)
 
-![Dashboard Screenshot](screenshots/dashboard.png)
+### Add Student Page Screenshot
+![Add Student](screenshots/add-student.png)
+
 
 ---
 
